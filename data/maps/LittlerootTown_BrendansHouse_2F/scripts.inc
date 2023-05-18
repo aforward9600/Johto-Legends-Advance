@@ -13,6 +13,15 @@ LittlerootTown_BrendansHouse_2F_OnTransition:
 	setvar VAR_SECRET_BASE_INITIALIZED, 0
 	end
 
+LittlerootTown_BrendansHouse_2F_EventScript_StopForClock::
+	lock
+	msgbox LittlerootTown_BrendansHouse_2F_Text_BetterSetClock
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_MovePlayerLeft
+	waitmovement 0
+	releaseall
+	end
+
 LittlerootTown_BrendansHouse_2F_EventScript_CheckShouldUpdateBrendanPos::
 	goto_if_set FLAG_MET_RIVAL_LILYCOVE, LittlerootTown_BrendansHouse_2F_EventScript_TryUpdateBrendanPos
 	goto_if_ge VAR_BIRCH_LAB_STATE, 2, LittlerootTown_BrendansHouse_2F_EventScript_Ret
@@ -228,6 +237,12 @@ LittlerootTown_BrendansHouse_2F_Movement_BrendanWalkToPCEast:
 	walk_in_place_faster_up
 	step_end
 
+LittlerootTown_BrendansHouse_2F_Movement_MovePlayerLeft:
+	walk_left
+	walk_left
+	face_up
+	step_end
+
 @ Unused, the player is already facing this direction so its unneeded
 LittlerootTown_BrendansHouse_2F_Movement_PlayerWatchBrendanEast:
 	delay_16
@@ -296,9 +311,12 @@ PlayersHouse_2F_Text_Notebook:
 
 Common_Text_LookCloserAtMap:
 	.string "{PLAYER} took a closer look at the\n"
-	.string "HOENN region map.$"
+	.string "Johto region map.$"
 
 PlayersHouse_2F_Text_ItsAGameCube:
 	.string "It's a Nintendo GameCube.\p"
 	.string "A Game Boy Advance is connected to\n"
 	.string "serve as the Controller.$"
+
+LittlerootTown_BrendansHouse_2F_Text_BetterSetClock:
+	.string "I'd better set the clock before I go.$"
